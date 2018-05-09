@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blurring</title>
+    <link rel="stylesheet" href="public/default.css" />
+    <script type="text/javascript" src="public/neonbuilder.min.js"></script>
+
+    <script type="text/javascript">
+        var neonObj = new neonbuilderObj();
+        var blurSize = 25;
+
+        function SetupBuilder() {
+            neonObj.CreateBuilder('bar-name');
+
+            neonObj.AddTextShadow(0,0, 12, 'red');
+            neonObj.AddTextShadow(0,0, 24, 'orange');
+            neonObj.AddTextShadow(0,0, 26, 'yellow');
+        }
+
+        function UpdateBlur() {
+            if (blurSize >= 100) {
+                blurSize = 24;
+            }
+
+            neonObj.UpdateTextShadowBlur(blurSize, 0);
+
+            blurSize += 5;
+
+            console.log("Blur size is " + blurSize);
+        }
+        
+    </script>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1 id="bar-name">Bloggs' Bar</h1>
+
+    <br/>
+    <div class="notes">This script updates a textshadow blurring effect every 2 seconds. It will reset every time the blur values is 100 or more</div>
+</div>
+<script type="text/javascript">
+    SetupBuilder();
+
+    setInterval(UpdateBlur, 400);
+</script>
+
+</body>
+</html>

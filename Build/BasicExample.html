@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic</title>
+    <link rel="stylesheet" href="public/default.css" />
+    <script type="text/javascript" src="public/neonbuilder.min.js"></script>
+
+    <script type="text/javascript">
+        var neonObj = new neonbuilderObj();
+
+        function SetupBuilder() {
+            neonObj.CreateBuilder('bar-name');
+
+            neonObj.AddTextShadow(0,0, 12, 'red');
+            neonObj.AddTextShadow(0,0, 24, 'orange');
+            neonObj.AddTextShadow(0,0, 26, 'yellow');
+        }
+
+    </script>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1 id="bar-name">Bloggs' Bar</h1>
+
+    <div class="notes">This script creates a basic textShadow. You pass in the element ID to initalise the Neon text efects.
+        No fancy code nor animations are executed.</div>
+
+</div>
+<script type="text/javascript">
+    SetupBuilder();
+</script>
+
+</body>
+</html>

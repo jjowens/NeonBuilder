@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UpdatePosition</title>
+    <link rel="stylesheet" href="public/default.css" />
+    <script type="text/javascript" src="public/neonbuilder.min.js"></script>
+
+    <script type="text/javascript">
+        var neonObj = new neonbuilderObj();
+        var blurSize = 25;
+
+        function SetupBuilder() {
+            neonObj.CreateBuilder('bar-name');
+
+            neonObj.AddTextShadow(0,0, 12, 'red');
+            neonObj.AddTextShadow(0,0, 24, 'orange');
+            neonObj.AddTextShadow(0,0, 26, 'yellow');
+        }
+
+        function UpdatePosition() {
+            neonObj.UpdateTextShadowPosition(10, 10, 0);
+            neonObj.UpdateTextShadowPosition(20, 20, 1);
+            neonObj.UpdateTextShadowPosition(30, 30, 1);
+        }
+        
+    </script>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1 id="bar-name">Bloggs' Bar</h1>
+
+    <br/>
+    <div class="notes">In 5 seconds, this script updates a textshadow top/left position, in pixels</div>
+</div>
+<script type="text/javascript">
+    SetupBuilder();
+
+    setInterval(UpdatePosition, 5000);
+</script>
+
+</body>
+</html>
