@@ -52,5 +52,6 @@ There are examples in the build folder where you can review and experiment with 
 Those files are available in the public/source folder.
 
 NeonBuilder.js - This is the non-minified version of the javascript file. It has comments.
-NeonBuilder.js - This is the minified version of the javascript file. All comments and newline characaters are stripped out.
+
+NeonBuilder.mini.js - This is the minified version of the javascript file. All comments and newline characaters are stripped out.
 
