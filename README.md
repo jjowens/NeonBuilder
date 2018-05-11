@@ -42,6 +42,7 @@ Before it starts cycling, it will make an isolated copy of the textshadow array.
 # Cycle Functions
 
 Start - Pass in milliseconds to set the frequency of cycling through the textshadows. It will create a timer to call a function to move the first text shadow to end of array every nth milliseconds. Useful for animating textshadows.
+
 Stop - It stops the timer.
 
 # Examples
