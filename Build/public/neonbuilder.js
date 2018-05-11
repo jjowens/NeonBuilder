@@ -4,8 +4,6 @@ var neonbuilderObj = (function NeonBuilder() {
     var _listOfTextShadows = [];
     var _textShadowStyle = '';
 
-    var _neontimer = undefined;
-
     function CreateBuilder(elementID) {
         _elementID = elementID;
         _elementObj = document.getElementById(elementID);
@@ -23,6 +21,7 @@ var neonbuilderObj = (function NeonBuilder() {
         // FLATTEN LIST OF TEXTSHADOWS TO A SINGLE LINE
         _textShadowStyle = tempList.join();
 
+        // ONLY APPLY TEXTSHADOWS TO ELEMENT IF IT EXISTS
         if (_elementObj) {
             _elementObj.style.textShadow = _textShadowStyle;
         }
@@ -100,6 +99,72 @@ var neonbuilderObj = (function NeonBuilder() {
         ApplyTextShadows();
     }
 
+    function GetListOfTextShadows() {
+        return _listOfTextShadows; //test
+    }
+
+    function DumpListOfTextShadowsOnConsole() {
+        console.table(_listOfTextShadows);
+    }
+
+    // CYCLE FUNCTIONS
+    function Cycle() {
+        var _cycleList = [];
+        var _cycletextShadowStyle = '';
+        var _cycleTimer;
+
+        function Start(milliSeconds) {
+            _cycleList = _listOfTextShadows.slice();
+
+            ApplyCycleTextShadows();
+
+            _cycleTimer = setInterval(CycleTextShadows, milliSeconds);
+        }
+
+        function Stop() {
+            clearTimeout(_cycleTimer);
+        }
+
+        function ApplyCycleTextShadows() {
+            var tempList = [];
+
+            // CREATE A TEMP LIST OF TEXTSHADOW STYLES
+            for (var i=0; i < _cycleList.length; i++) {
+                var textShadowObj = _cycleList[i];
+                tempList.push(textShadowObj.left + "px " + textShadowObj.top + "px " + textShadowObj.blur + "px " + textShadowObj.colour);
+            }
+
+            // FLATTEN LIST OF TEXTSHADOWS TO A SINGLE LINE
+            _cycletextShadowStyle = tempList.join();
+
+            // ONLY APPLY TEXTSHADOWS TO ELEMENT IF IT EXISTS
+            if (_elementObj) {
+                _elementObj.style.textShadow = _cycletextShadowStyle;
+            }
+        }
+
+        function CycleTextShadows() {
+            // GET FIRST TEXTSHADOW
+            var obj = _cycleList[0];
+
+            // DELETE FIRST TEXTSHADOW FROM ARRAY
+            _cycleList.splice(0, 1);
+
+            // ADD FIRST TEXTSHADOW TO END OF ARRAY
+            _cycleList.push(obj);
+
+            ApplyCycleTextShadows();
+        }
+
+        return {
+            Start: Start,
+            Stop: Stop,
+            CycleTextShadows: CycleTextShadows
+        }
+
+    }
+
+
     return {
         CreateBuilder: CreateBuilder,
         ApplyTextShadows: ApplyTextShadows,
@@ -110,5 +175,8 @@ var neonbuilderObj = (function NeonBuilder() {
         UpdateTextShadowPosition: UpdateTextShadowPosition,
         UpdateTextShadowBlur: UpdateTextShadowBlur,
         UpdateTextShadowColour: UpdateTextShadowColour,
+        GetListOfTextShadows: GetListOfTextShadows,
+        DumpListOfTextShadowsOnConsole: DumpListOfTextShadowsOnConsole,
+        Cycle: Cycle
     }
 });
